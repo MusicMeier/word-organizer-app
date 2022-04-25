@@ -1,12 +1,10 @@
-## Available Scripts
+## Welcome to Word Organzer
 
-In the project directory, you can run:
+In this app, you will be able to type in numerous words and have it output the number of words as well as the number of occurances for each word. Enjoy!
 
-### `yarn start`
+<h2>Setup</h2>
+Create a folder in your directory. Then clone: https://github.com/MusicMeier/word-organizer-app.git
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
+From your folder perform the following command: <code>npm install</code><br><br>
+Then you should: <code>npm start</code><br><br>
+You are now ready to start using the first iteration of Word-organizer!<br>
