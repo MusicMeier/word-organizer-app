@@ -1,56 +1,49 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-class Home extends Component {
-// const [data, setData]=useState(null);
+const Home = () => {
+  const [words, setWords] = useState('');
+  const [wordCount, setWordCount] = useState({});
 
-state = {
-  data: "",
-  print: false
-}
+  const handleChange = (event) => {
+    const currentWords = event.target.value;
 
-  // Check for special characters
-  // Spilt into an array
-  // Sort into alphabetical order
-
-  // myString = "I wanted to love you so badly but you made it so hard for me to love you."
-
-  setPrint = (event) => {
-    this.setState({print: event})
+    setWords(currentWords);
+    orderAndCountWords(currentWords);
   }
 
-  orderAndCountWords = (event) => {
-  let lowerCaseString = this.target.event.toLowerCase();
-  let noSpecialChars = lowerCaseString.replace(/[^a-zA-Z0-9 ]/g, '');
-  let arrayOfWords = noSpecialChars.split(" ");
-  let sortedWordArray = arrayOfWords.sort()
-  const count = {};
-  for (const word of sortedWordArray) {
-    if (count[word]) {
-      count[word] += 1;
-    } else {
-      count[word] = 1;
+  const orderAndCountWords = (currentWords) => {
+    const lowerCaseWordsNoTrailingWhiteSpace = currentWords.toLowerCase().trim();
+    const noSpecialChars = lowerCaseWordsNoTrailingWhiteSpace.replace(/[^a-zA-Z0-9 ]/g, '');
+    const arrayOfWords = noSpecialChars.split(/\s+/);
+    const sortedWordArray = arrayOfWords.sort();
+    const count = {};
+    for (const word of sortedWordArray) {
+      count[word] ? count[word] += 1 : count[word] = 1;
     }
+    setWordCount(count);
   }
-  return count;
-}
 
-  render(){
-    return (
-      <div className="Home">
-        <header>Share your essay Here:</header>
-        <input
-            type="text"
-            onChange={this.orderAndCountWords}
-         />
-         <button onClick={()=>this.setPrint(true)}>Press Me!</button>
-         {
-          this.print
-          ?<p>{this.data}</p>
-          :null
-         }
-      </div>
-    )
-  };
+  const showEachWord = () => {
+    if (words.trim().length === 0) return null;
+
+    const wordsDisplay = [];
+    for (const word in wordCount) {
+      wordsDisplay.push(<p key={word}>{word}: {wordCount[word]}</p>);
+    }
+    return wordsDisplay;
+  }
+
+  return (
+    <div className='Home'>
+      <header>Share your essay Here:</header>
+      <input
+        type='text'
+        onChange={handleChange}
+        value={words}
+      />
+      <div>{showEachWord()}</div>
+    </div>
+  );
 }
 
 export default Home;
