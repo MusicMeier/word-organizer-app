@@ -1,4 +1,4 @@
-## Welcome to Word Organzer
+## Welcome to Word Organizer
 
 In this app, you will be able to type in numerous words and have it output the number of words as well as the number of occurances for each word. Enjoy!
 
